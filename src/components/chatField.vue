@@ -1,11 +1,13 @@
 <template>
   <div class="chat-field">
-    <component
-      v-for="(message, index) in messages"
-      :is="message.type === 'user' ? ChatBubbleUsr : ChatBubbleBot"
-      :key="index"
-      :message="message.text"
-    />
+    <template v-for="(message, index) in messages">
+      <component
+        v-if="message.text && message.text.trim() !== ''"
+        :is="message.type === 'user' ? ChatBubbleUsr : ChatBubbleBot"
+        :key="index"
+        :message="message.text"
+      />
+    </template>
   </div>
 </template>
 
